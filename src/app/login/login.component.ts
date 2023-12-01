@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor (private _router: Router, private _auth: AuthService) {}
 
   ngOnInit() {
+    // Abonnement au BehaviorSubject pour réagir aux changements d'état d'authentification.
     this._auth.getAuthStatus().subscribe(isAuth => {
       if (isAuth) {
         this._router.navigate(['/dashboard']);
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   login(username: string, password: string) {
     if (username === 'test' && password === '1234') {
+      // Utilisation la méthode login de AuthService pour mettre à jour l'état d'authentification.
       this._auth.login(this.token);
       this._router.navigate(['/dashboard']);
     }
